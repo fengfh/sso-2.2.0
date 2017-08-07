@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"       
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+	
+	<!-- 属性文件读入 -->
+	<bean id="propertyConfigurer"
+		class="bingo.sso.server.web.spring.PropertyConfigurer">
+		<property name="locations">
+			<list>
+				<!-- 模糊匹配加载不了，改用指定文件 -->
+				<value>classpath:config/jdbc.xml</value>
+				<value>classpath:config/openid.xml</value>
+				<value>classpath:spring/sso-deploy/default/config/themes.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- import loginlog -->
+	<import resource="../../sso-plugin/sso-plugin-loginlog.xml"/>
+	<!-- import ntlm -->
+	<import resource="../../sso-plugin/sso-plugin-ntlm.xml"/>
+	
+	<!-- import registry  ,if choose db,, need db script init
+	<import resource="../../sso-plugin/sso-plugin-registry-db.xml"/>
+	<import resource="../../sso-plugin/sso-plugin-registry.xml"/>
+	-->
+	<import resource="../../sso-plugin/sso-plugin-registry-db.xml"/>
+	
+	<bean id="singleSignOnManager" class="bingo.sso.core.SingleSignOnManager"
+        p:config-ref="singleSignOnConfig"
+        p:webLoginHandlers-ref="web.loginHandlers"
+        p:desktopLoginHandlers-ref="desktop.loginHandlers"
+        p:webLogoutHandlers-ref="web.logoutHandlers"
+        p:desktopLogoutHandlers-ref="desktop.logoutHandlers"
+        p:checkAuthenticationHandlers-ref="checkAuthenticationHandlers"
+        p:logoutUrlManager-ref="logoutUrlManager"
+        p:exceptionHandlers-ref="exceptionHandlers"
+        p:appSpecifiedSecretManager-ref="appSpecifiedSecretManager"
+        p:centralTicketService-ref="centralTicketService"        
+        p:clientHostManager-ref="clientHostManager"
+        p:loginPathManager-ref="loginPathManager"
+        p:singleSignOnContinueable-ref="singleSignOnContinueable"
+        p:sessionInvalidateHandler-ref="sessionInvalidateHandler"
+        p:credentialsManager-ref="credentialsManager"
+        p:authenticationManager-ref="authenticationManager"
+        p:authenticationHandlers-ref="authenticationHandlers"
+        p:credentialsResolverMappers-ref="credentialsResolverMappers">
+    </bean>
+    
+    <!-- single sign on config -->
+    <bean id="singleSignOnConfig" class="bingo.sso.core.SingleSignOnConfig">
+        <!-- ntlm:Window集成认证  form:Form验证-->
+        <property name="defaultAuthType" value="form" />
+    </bean>
+    
+    <util:list id="credentialsResolverMappers">      
+        <bean class="bingo.sso.core.authentication.CredentialsResolverMapper" 
+        	p:singleSignOnTypes="desktop"
+            p:singleSignOnActionTypes="grantLoginTicket"
+            p:credentialsResolver-ref="assertionCredentialsResolver"/>  
+        <bean class="bingo.sso.core.authentication.CredentialsResolverMapper" 
+        	p:singleSignOnTypes="desktop"
+            p:singleSignOnActionTypes="grantAppSpecifiedSecret"
+            p:credentialsResolver-ref="authorizationCodeCredentialsResolver"/>  
+        <bean class="bingo.sso.core.authentication.CredentialsResolverMapper" 
+        	p:singleSignOnTypes="desktop"
+            p:singleSignOnActionTypes="login,grantLoginTicket,refreshTicketGrantingTicket"
+            p:credentialsResolver-ref="appSpecifiedSecretCredentialsResolver"/>
+        <bean class="bingo.sso.core.authentication.CredentialsResolverMapper" 
+        	p:singleSignOnTypes="web,desktop"
+            p:singleSignOnActionTypes="login"
+            p:credentialsResolver-ref="loginTicketCredentialsResolver"/>
+        <bean class="bingo.sso.core.authentication.CredentialsResolverMapper" 
+        	p:singleSignOnTypes="web,desktop"
+            p:singleSignOnActionTypes="login,grantAppSpecifiedSecret"
+            p:credentialsResolver-ref="loginFormCredentialsResolver"/>
+	</util:list>
+	<util:list id="authenticationHandlers">
+        <ref bean="jdbcAuthenticationHandler"/>
+        <ref bean="loginTicketAuthenticationHandler"/>
+        <ref bean="appSpecifiedSecretAuthenticationHandler"/>
+        <ref bean="authorizationCodeAuthenticationHandler"/>
+        <ref bean="assertionAuthenticationHandler"/>
+        <!--
+        <ref bean="ntlmAuthenticationHandler"/>
+        -->
+	</util:list>
+	
+	<!-- 登录流程的处理链配置 -->
+	<util:list id="web.loginHandlers">
+		<ref bean="ticketCookieRetrievingHandler"/>
+		<ref bean="credentialsLoginHandler"/>
+		<ref bean="windowsNTLMLoginHandler"/>
+		<ref bean="authenticateLoginHandler"/>
+		<ref bean="gotoLoginFormHandler"/>
+		<ref bean="ticketCookieWritingHandler"/>
+		<ref bean="grantServiceTicketHandler"/>
+		<ref bean="loginLogHandler"/>
+	</util:list>
+	<util:list id="desktop.loginHandlers">
+		<ref bean="credentialsLoginHandler"/>
+		<ref bean="authenticateLoginHandler"/>
+		<ref bean="grantServiceTicketHandler"/>
+		<ref bean="grantAppSpecifiedSecretHandler"/>
+		<ref bean="loginLogHandler"/>
+	</util:list>
+	
+	<!-- 如果不需要验证码，则去掉这个Bean -->
+	<bean id="randomCodeValidator" class="bingo.sso.server.web.validate.RandomCodeValidator">
+    </bean>
+    
+    <!-- 登录入口，第三方登录接入可以在这里扩展（bingo.sso.core.login.ILoginEntryProcessor） -->
+    <util:list id="loginEntryProcessors">
+		
+	</util:list>
+    
+    <!-- 效验登录处理链 -->
+    <util:list id="checkAuthenticationHandlers">
+		<ref bean="validateServiceTicketCheckAuthenticationHandler"/>
+	</util:list>
+	
+	<!-- 注销流程的处理链配置 -->
+	<util:list id="web.logoutHandlers">
+		<ref bean="serverLogoutHandler"/>
+		<ref bean="clientLogoutHandler"/>
+		<ref bean="logoutLogHandler"/>
+	</util:list>
+	<util:list id="desktop.logoutHandlers">
+		<ref bean="serverLogoutHandler"/>
+		<ref bean="logoutLogHandler"/>
+	</util:list>
+	
+    <bean id="logoutUrlManager" class="bingo.sso.core.logout.OnDemandLogoutUrlManager">
+    </bean>
+    
+	<!-- 
+	<bean id="clientHostManager" class="bingo.sso.core.client.DBClientHostManager">
+    </bean>
+	<bean id="clientHostManager" class="bingo.sso.core.client.MemClientHostManager">
+		<property name="clientHostMap" ref="clientHostMap" />        
+    </bean>
+	<util:map id="clientHostMap"></util:map>
+    <bean id="clientHostAccesser" class="bingo.sso.core.client.ClientHostAccesser"
+    	p:clientHostManager-ref="clientHostManager"/>    
+	 -->
+	<!-- 当不需要应用接入控制时，配置为Mock -->
+	<bean id="clientHostManager" class="bingo.sso.core.client.MockClientHostManager"/>
+    <bean id="clientHostAccesser" class="bingo.sso.core.client.MockClientHostAccesser"/>
+    
+    <!-- appSpecifiedSecretManager 必须为持久化模式，这里需要执行对应的数据库脚本 -->
+    <bean id="appSpecifiedSecretManager" class="bingo.sso.core.appspecifiedsecret.DBAppSpecifiedSecretManager"/>
+    
+</beans>

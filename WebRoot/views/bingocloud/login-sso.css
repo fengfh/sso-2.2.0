@@ -1,0 +1,165 @@
+@charset "utf-8";
+
+
+html {scrollbar-face-color: #DBE2F4;scrollbar-highlight-color: #F5FFFF;scrollbar-shadow-color: #DCDFF0;scrollbar-3dlight-color: #909FBE;scrollbar-arrow-color: #8993AC;scrollbar-track-color: #E4ECF9;scrollbar-darkshadow-color: #909FBE;}
+body {margin: 0 auto;padding:0;background:#FFF;font-size: 12px;overflow-x:hidden;font-family: Verdana, Geneva, "sans-serif", "宋体";scrollbar-face-color: #DBE2F4;scrollbar-highlight-color: #F5FFFF;scrollbar-shadow-color: #DCDFF0;scrollbar-3dlight-color: #909FBE;scrollbar-arrow-color: #8993AC;scrollbar-track-color: #E4ECF9;scrollbar-darkshadow-color: #909FBE; background:url(images/index-bg.gif) repeat-x left top;}
+table {font-size: 12px; border-collapse:collapse;}
+th {font-weight: normal;text-align: left;}
+ul {padding: 0px;margin: 0px;}
+li {padding: 0px;margin: 0px;list-style-type: none;}
+input {font-size: 12px;}
+select {font-size: 12px;}
+img {border: 0px;}
+h1, h2, h3, h4, h5 {margin: 0px;padding: 0px;font-size:12px;}
+a {text-decoration:none;color:#7d7d7d;}
+a:hover {text-decoration:none;color:#F0001B;}
+.hre10 {height:10px;}
+.hre5 {height:5px;}
+.clear:after{content:" ";display:block;height:0;clear:both;visibility:hidden;}
+form{margin:0; paddding:0;}
+
+.master{ }
+.master .container{ width:1000px; margin:0 auto;}
+.master .header{width:1000px;height:82px; overflow:hidden; position:relative;}
+.master .header h1{ width:236px; height:55px; margin-top:8px;margin-left:5px;}
+.master .header .link{padding-right:8px; line-height:80px; position:absolute; right:4px; top:0;}
+.master .header .link a{color:#36c; text-decoration:none;}
+.master .header .link a:hover{color:red; text-decoration:underline;}
+
+
+.layout-content{ padding-bottom:10px;min-height:220px;_min-height:0px;_height:220px;}
+.layout-content .layout-content-left{ float:left; margin-right:70px; width:650px; }
+.layout-content .layout-content-right{ float:left; width:240px; padding-top:30px;}
+
+/*登录成功*/
+.mail-steps-success{ background:url(images/mail-teat-bg1.jpg) no-repeat left top; width:534px; height:173px; margin-left:97px; padding-top:60px; padding-left:290px;text-align:left;}
+.mail-steps-success .success-tab{ text-align:left;}
+.mail-steps-success .success-tab th{ font-size:13px; font-weight:bold; color:#fc7509; padding-bottom:10px;}
+.mail-steps-success .success-tab td{ color:#000; line-height:20px;}
+.mail-steps-success .success-tab td a{ color:#3366cc; text-decoration:underline;}
+.mail-steps-success .success-tab td a:hover{ color:#ff0000; text-decoration:underline;}
+
+/*链接*/
+.link-mian{ clear:both;-moz-margin-start:60px; margin-left:60px;}
+.link-mian ul li span{ font-size:15px;}
+.link-mian .left-ico{padding-right:10px;}
+.link-mian .left-ico .line{ background:url(images/dian.gif) repeat-y center top; height:100px;}
+.link-mian ul {}
+.link-mian ul li{  line-height:26px; height:26px;}
+.link-mian ul li a{color:#7d7d7d; }
+.link-mian ul li a:hover{color:#7d7d7d; text-decoration:underline;}
+.link-mian ul li span{ font-weight:bold; color:#666666;}
+.link-mian .ul-width{ width:210px;}
+
+.footer{ border-top:1px solid #e3e3e3; padding-top:17px; text-align:center; line-height:20px; color:#868686; padding-bottom:17px;}
+
+.webpart1{margin-bottom:10px;}
+.webpart1 .webpart-head{ background:url(images/wpbg1.gif) no-repeat left top; height:8px; padding-left:10px;}
+.webpart1 .webpart-head .webpart-head-item{ background:url(images/wpbg1.gif) no-repeat right top; height:8px;}
+.webpart1 .webpart-main{border-left:1px solid #e0e1e3;}
+.webpart1 .webpart-main .webpart-main-item{ padding:0 10px; border-right:1px solid #e0e1e3;}
+.webpart1 .webpart-foot{ background:url(images/wpbg1.gif) no-repeat left -8px; height:8px; padding-left:10px;}
+.webpart1 .webpart-foot .webpart-foot-item{ background:url(images/wpbg1.gif) no-repeat right -8px; height:8px;}
+
+
+
+.login{ min-height:220px;_min-height:0px;_height:220px; color:#7d7d7d;}
+.floatleft {overflow: hidden; float: left;}
+.login_body {padding: 15px 0px 0px;}
+.btn_user_login {background: url("images/btn_user_login.gif") no-repeat 0px 0px; border: currentColor; width: 124px; height: 46px; cursor: pointer; border:none;}
+.forget_pass {color: rgb(51, 102, 204);}
+.waysList li {height: 16px; line-height: 17px; overflow: hidden; margin-top: 8px; margin-right: 10px; float: left;}
+.waysList li img {margin-right: 4px; float: left;}
+.s4 {color: rgb(1, 76, 144);}
+.login_box {margin-top: 10px; border-right-color: rgb(236, 236, 236); border-right-width: 1px; border-right-style: solid;}
+.login_box h2 {padding: 10px 0px;}
+#login_frame {height: 260px; overflow: hidden;}
+.wap_reg_link {display: none;}
+.new_item {overflow: hidden; clear: both;}
+.new_item .tit {width: 203px; height: 55px; text-align: right; line-height: 41px; font-size: 14px; float: left;}
+.new_item .bdmain {width: 245px; padding-left: 6px; margin-right: 5px; float: left; display: inline;}
+.login_btn {left: 162px; top: 144px; position: absolute;}
+.login_btn a {background: url("images/sign.png") no-repeat 0px 0px; margin: 0px; padding: 0px; width: 70px; height: 23px; display: block;}
+.login_btn a:hover {background-position: 0px -23px;}
+.btn_reg_frame {display: none;}
+.btn_reg_frame a:hover {text-decoration: none;}
+.forget_pwd_link {left: 245px; top: 153px; position: absolute;}
+.forget_pwd_link a {color: rgb(51, 51, 102); line-height: 1.2; font-size: 12px; text-decoration: none;}
+.forget_pwd_link a:hover {text-decoration: underline;}
+.inputtxt {border: 1px solid rgb(214, 214, 216); width: 180px; height: 33px; color: rgb(103, 103, 103); line-height: 33px; font-size: 13px;}
+.col-1 {margin: auto; top: 30px; width: 310px; height: 260px; right: -6px; position: relative; border-left:solid 1px #ececec; padding-left:40px;}
+.col-1 span.o1 {background-position: left -6px; left: -1px; top: -1px;}
+.col-1 span.o2 {background-position: right -6px; top: -1px; right: -1px;}
+.col-1 span.o3 {background-position: left -9px; left: -1px; bottom: -1px;}
+.col-1 span.o4 {background-position: right -9px; right: -1px; bottom: -1px;}
+.col-1 .title {padding: 5px 10px 3px; color: rgb(56, 110, 168);}
+.col-1 div.content {padding: 0px 10px 10px;}
+.col-1 div.content h5 {padding: 0px 0px 0px 10px; height: 38px; line-height: 38px; font-size: 12px;}
+.col-1 div.content h5 strong {visibility: hidden;}
+.pass-logo {margin: auto; width: 261px;}
+.reg_btn {background: url("images/btn_reg.gif") no-repeat left bottom; border: currentColor; width: 120px; height: 37px; text-align: center; color: rgb(255, 255, 255); line-height: 37px; font-size: 15px; font-weight: bold; cursor: pointer; border:none;}
+.reg_btn1 {background: url("images/12.png") no-repeat left bottom; border: currentColor; width: 120px; height: 37px; text-align: center; line-height: 37px; cursor: pointer;}
+.submit {display: inline-block;}
+.pass-logo a {display: inline-block;}
+.form-login .input label {display: inline-block;}
+.item span {display: inline-block;}
+.item {padding: 10px 0px; margin-bottom: 10px; vertical-align: middle; border-bottom-color: rgb(225, 228, 232); border-bottom-width: 1px; border-bottom-style: solid;}
+.blue {color: rgb(55, 122, 190); line-height: 26px;}
+.login_link {color: rgb(244, 156, 15); font-weight: bold;}
+
+
+.sitenav{ width:1001px; height:31px; text-indent:34px; padding-top:18px; background:url(images/sitenav.gif) no-repeat; margin-bottom:13px; color:#6c6c6c;}
+#signin{ padding-bottom:40px;}
+#signin #logins {
+  padding:25px 20px 25px 20px;
+  height: 145px;
+}
+#signin .group {
+  height:160px;
+  clear: both;
+}
+#signin fieldset {
+  margin-bottom:8px;
+  border: 0 none;
+}
+
+#signin label {
+  display:block;
+  float:left;
+  margin-right:10px;
+  padding-top:8px;
+  text-align:right;
+  width:110px;
+}
+
+#signin .error {
+  color: #0b2933;
+  width:428px;
+  -moz-border-radius: 5px 5px 0px 0px;
+  -webkit-border-radius: 5px 5px 0px 0px;
+  font-size:12px;
+  line-height:130%;
+  background:#e4e4e4 url("./images/warning.png") 17px 4px no-repeat;
+  padding: 5px 0 5px 42px;
+  font-weight:bold;
+}
+
+
+#signin .info {
+  color: #0b2933;
+  width:428px;
+  -moz-border-radius: 5px 5px 0px 0px;
+  -webkit-border-radius: 5px 5px 0px 0px;
+  font-size:12px;
+  line-height:130%;
+  padding: 5px 0 5px 10px;
+  font-weight:bold;
+}
+
+
+#signin  p.buttons 
+{
+  clear: both;
+  margin: 20px 0 0 118px;
+  padding: 0;
+}

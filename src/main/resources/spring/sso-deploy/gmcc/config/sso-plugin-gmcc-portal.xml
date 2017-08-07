@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="portal.tokenCheckEndpoint">http://portal.gmcc.net/UIPService.asmx</entry>
+    <entry key="portal.userPasswordCheckEndpoint">http://portal.gmcc.net/UIPService.asmx</entry>
+	<entry key="portal.cookieName">iPlanetDirectoryPro</entry>
+	<entry key="portal.cookieDomain">.gmcc.net</entry>
+    <entry key="portal.systemId"></entry>
+    <entry key="portal.account"></entry>
+    <entry key="portal.password"></entry>
+    <entry key="portal.convertPortalAccount">false</entry>
+    <!-- 
+    	Portal用户密码验证Servlet地址，目前该参数portal.login.url在此配置还无法使用，
+   		请打开views\gmcc\doPortalLogin.jsp文件，手工修改portalLoginForm的Action对应的Url值
+    -->
+    <entry key="portal.login.url">http://portal.gmcc.net/UI/Login</entry>
+</properties>
